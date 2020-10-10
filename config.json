@@ -10,7 +10,7 @@
         }
     ],
     "contributors": [],
-    "page_url": "http://example.com/plugin-page-url",
+    "page_url": "https://github.com/wp-kitten/cp-newspaper-feed-reader",
     "update_url": "",
     "autoload": "index.php",
     "thumbnail": "thumb.png"
