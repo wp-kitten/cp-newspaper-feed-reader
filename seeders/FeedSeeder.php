@@ -4,7 +4,7 @@ namespace Database\Seeders;
 use App\Models\Category;
 use App\Models\CategoryMeta;
 use App\Models\Feed;
-use App\Helpers\CPML;
+use App\Helpers\VPML;
 use App\Models\Post;
 use App\Models\PostMeta;
 use App\Models\PostStatus;
@@ -134,7 +134,7 @@ class FeedSeeder extends Seeder
     public function run()
     {
         $postTypeID = PostType::where( 'name', 'post' )->first()->id;
-        $languageID = CPML::getDefaultLanguageID();
+        $languageID = VPML::getDefaultLanguageID();
 
         //#! Create the special categories and add meta fields
         $specialCategories = [ NPFR_CATEGORY_PUBLIC, NPFR_CATEGORY_PRIVATE ];
@@ -143,7 +143,7 @@ class FeedSeeder extends Seeder
                 'name' => $categoryName,
                 'slug' => Str::slug( $categoryName ),
                 'post_type_id' => PostType::where( 'name', 'post' )->first()->id,
-                'language_id' => CPML::getDefaultLanguageID(),
+                'language_id' => VPML::getDefaultLanguageID(),
             ] );
         }
 
@@ -197,7 +197,7 @@ class FeedSeeder extends Seeder
                 $feed = Feed::create( [
                     'url' => $feedUrl,
                     'hash' => md5( $feedUrl ),
-                    'user_id' => cp_get_current_user_id(),
+                    'user_id' => vp_get_current_user_id(),
                     'category_id' => $theCat->id,
                 ] );
                 if ( !$feed ) {
@@ -252,7 +252,7 @@ class FeedSeeder extends Seeder
                         $feed = Feed::create( [
                             'url' => $feedUrl,
                             'hash' => md5( $feedUrl ),
-                            'user_id' => cp_get_current_user_id(),
+                            'user_id' => vp_get_current_user_id(),
                             'category_id' => $theSubCat->id,
                         ] );
                         if ( !$feed ) {
@@ -270,7 +270,7 @@ class FeedSeeder extends Seeder
                             $feed = Feed::createOrUpdate( [
                                 'url' => $feedUrl,
                                 'hash' => md5( $feedUrl ),
-                                'user_id' => cp_get_current_user_id(),
+                                'user_id' => vp_get_current_user_id(),
                                 'category_id' => $theSubCat->id,
                             ] );
                             if ( !$feed ) {
@@ -287,8 +287,8 @@ class FeedSeeder extends Seeder
         //#! Pages
         $postClass = new Post();
         $postStatusID = PostStatus::where( 'name', 'publish' )->first()->id;
-        $currentUserID = cp_get_current_user()->getAuthIdentifier();
-        $defaultLanguageID = CPML::getDefaultLanguageID();
+        $currentUserID = vp_get_current_user()->getAuthIdentifier();
+        $defaultLanguageID = VPML::getDefaultLanguageID();
         $postTypeId = PostType::where( 'name', 'page' )->first()->id;
 
         $blogPageID = 0;
@@ -309,7 +309,7 @@ class FeedSeeder extends Seeder
                 if ( $page && 'home' == $slug ) {
                     PostMeta::create( [
                         'post_id' => $page->id,
-                        'language_id' => CPML::getDefaultLanguageID(),
+                        'language_id' => VPML::getDefaultLanguageID(),
                         'meta_name' => 'template',
                         'meta_value' => 'templates.home',
                     ] );
@@ -317,7 +317,7 @@ class FeedSeeder extends Seeder
                 elseif ( $page && 'blog' == $slug ) {
                     PostMeta::create( [
                         'post_id' => $page->id,
-                        'language_id' => CPML::getDefaultLanguageID(),
+                        'language_id' => VPML::getDefaultLanguageID(),
                         'meta_name' => 'template',
                         'meta_value' => 'templates.blog',
                     ] );

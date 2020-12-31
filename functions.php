@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Category;
-use App\Helpers\CPML;
+use App\Helpers\VPML;
 use App\Http\Controllers\Admin\AdminControllerBase;
 use App\Models\Options;
 use App\Models\PostType;
@@ -41,7 +41,7 @@ function npfrGetTopCategories()
     }
 
     return $query
-        ->where( 'language_id', CPML::getDefaultLanguageID() )
+        ->where( 'language_id', VPML::getDefaultLanguageID() )
         ->where( 'post_type_id', PostType::where( 'name', 'post' )->first()->id )
         ->orderBy( 'name', 'ASC' )
         ->get();
@@ -91,7 +91,7 @@ function npfrGetAdminBaseController()
 function npfrGetCategoryPublic()
 {
     return Category::where( 'slug', NPFR_CATEGORY_PUBLIC )
-        ->where( 'language_id', CPML::getDefaultLanguageID() )
+        ->where( 'language_id', VPML::getDefaultLanguageID() )
         ->where( 'post_type_id', PostType::where( 'name', 'post' )->first()->id )
         ->first();
 }
@@ -103,7 +103,7 @@ function npfrGetCategoryPublic()
 function npfrGetCategoryPrivate()
 {
     return Category::where( 'slug', NPFR_CATEGORY_PRIVATE )
-        ->where( 'language_id', CPML::getDefaultLanguageID() )
+        ->where( 'language_id', VPML::getDefaultLanguageID() )
         ->where( 'post_type_id', PostType::where( 'name', 'post' )->first()->id )
         ->first();
 }

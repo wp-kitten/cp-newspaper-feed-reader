@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Schema;
  */
 
 Route::get( "admin/feed-reader/feeds", function () {
-    if ( !cp_current_user_can( 'manage_options' ) ) {
+    if ( !vp_current_user_can( 'manage_options' ) ) {
         return redirect()->back()->with( 'message', [
             'class' => 'danger', // success or danger on error
             'text' => __( 'npfr::m.You are not allowed to perform this action.' ),
@@ -41,7 +41,7 @@ Route::get( "admin/feed-reader/feeds", function () {
 } )->middleware( [ 'web', 'auth', 'active_user' ] )->name( "admin.feed_reader.feeds.all" );
 
 Route::get( "admin/feed-reader/feeds/edit/{id}", function ( $id ) {
-    if ( !cp_current_user_can( 'manage_options' ) ) {
+    if ( !vp_current_user_can( 'manage_options' ) ) {
         return redirect()->back()->with( 'message', [
             'class' => 'danger', // success or danger on error
             'text' => __( 'npfr::m.You are not allowed to perform this action.' ),
@@ -54,7 +54,7 @@ Route::get( "admin/feed-reader/feeds/edit/{id}", function ( $id ) {
 } )->middleware( [ 'web', 'auth', 'active_user' ] )->name( "admin.feed_reader.feeds.edit" );
 
 Route::post( "admin/feed-reader/feeds/create", function () {
-    if ( !cp_current_user_can( 'manage_options' ) ) {
+    if ( !vp_current_user_can( 'manage_options' ) ) {
         return redirect()->back()->with( 'message', [
             'class' => 'danger', // success or danger on error
             'text' => __( 'npfr::m.You are not allowed to perform this action.' ),
@@ -105,7 +105,7 @@ Route::post( "admin/feed-reader/feeds/create", function () {
 } )->middleware( [ 'web', 'auth', 'active_user' ] )->name( "admin.feed_reader.feeds.create" );
 
 Route::post( "admin/feed-reader/feeds/update/{id}", function ( $id ) {
-    if ( !cp_current_user_can( 'manage_options' ) ) {
+    if ( !vp_current_user_can( 'manage_options' ) ) {
         return redirect()->back()->with( 'message', [
             'class' => 'danger', // success or danger on error
             'text' => __( 'npfr::m.You are not allowed to perform this action.' ),
@@ -162,7 +162,7 @@ Route::post( "admin/feed-reader/feeds/update/{id}", function ( $id ) {
 } )->middleware( [ 'web', 'auth', 'active_user' ] )->name( "admin.feed_reader.feeds.update" );
 
 Route::post( "admin/feed-reader/feeds/delete/{id}", function ( $id ) {
-    if ( !cp_current_user_can( 'manage_options' ) ) {
+    if ( !vp_current_user_can( 'manage_options' ) ) {
         return redirect()->back()->with( 'message', [
             'class' => 'danger', // success or danger on error
             'text' => __( 'npfr::m.You are not allowed to perform this action.' ),
@@ -191,7 +191,7 @@ Route::post( "admin/feed-reader/feeds/delete/{id}", function ( $id ) {
 } )->middleware( [ 'web', 'auth', 'active_user' ] )->name( "admin.feed_reader.feeds.delete" );
 
 Route::get( "admin/feed-reader/feeds/trash", function () {
-    if ( !cp_current_user_can( 'manage_options' ) ) {
+    if ( !vp_current_user_can( 'manage_options' ) ) {
         return redirect()->back()->with( 'message', [
             'class' => 'danger', // success or danger on error
             'text' => __( 'npfr::m.You are not allowed to perform this action.' ),
@@ -203,7 +203,7 @@ Route::get( "admin/feed-reader/feeds/trash", function () {
 } )->middleware( [ 'web', 'auth', 'active_user' ] )->name( "admin.feed_reader.feeds.trash" );
 
 Route::post( "admin/feed-reader/feeds/trash/restore/{id}", function ( $id ) {
-    if ( !cp_current_user_can( 'manage_options' ) ) {
+    if ( !vp_current_user_can( 'manage_options' ) ) {
         return redirect()->back()->with( 'message', [
             'class' => 'danger', // success or danger on error
             'text' => __( 'npfr::m.You are not allowed to perform this action.' ),
@@ -231,7 +231,7 @@ Route::post( "admin/feed-reader/feeds/trash/restore/{id}", function ( $id ) {
 } )->middleware( [ 'web', 'auth', 'active_user' ] )->name( "admin.feed_reader.feeds.trash.restore" );
 
 Route::post( "admin/feed-reader/feeds/trash/delete/{id}", function ( $id ) {
-    if ( !cp_current_user_can( 'manage_options' ) ) {
+    if ( !vp_current_user_can( 'manage_options' ) ) {
         return redirect()->back()->with( 'message', [
             'class' => 'danger', // success or danger on error
             'text' => __( 'npfr::m.You are not allowed to perform this action.' ),
@@ -259,7 +259,7 @@ Route::post( "admin/feed-reader/feeds/trash/delete/{id}", function ( $id ) {
 } )->middleware( [ 'web', 'auth', 'active_user' ] )->name( "admin.feed_reader.feeds.trash.delete" );
 
 Route::post( "admin/feed-reader/feeds/trash/empty", function () {
-    if ( !cp_current_user_can( 'manage_options' ) ) {
+    if ( !vp_current_user_can( 'manage_options' ) ) {
         return redirect()->back()->with( 'message', [
             'class' => 'danger', // success or danger on error
             'text' => __( 'npfr::m.You are not allowed to perform this action.' ),
@@ -322,7 +322,7 @@ Route::post( 'admin/feed-reader/import-default-content', function () {
  * @POST: Import all feeds
  */
 Route::post( 'admin/feed-reader/feeds/import', function () {
-    if ( !cp_current_user_can( 'manage_options' ) ) {
+    if ( !vp_current_user_can( 'manage_options' ) ) {
         return redirect()->back()->with( 'message', [
             'class' => 'warning',
             'text' => __( 'npfr::m.You are not allowed to perform this action.' ),
@@ -377,7 +377,7 @@ Route::post( 'admin/feed-reader/feeds/import', function () {
  * @POST: Import a specific feed
  */
 Route::post( 'admin/feed-reader/feeds/import/{id}', function ( $feedID ) {
-    if ( !cp_current_user_can( 'manage_options' ) ) {
+    if ( !vp_current_user_can( 'manage_options' ) ) {
         return redirect()->back()->with( 'message', [
             'class' => 'warning',
             'text' => __( 'npfr::m.You are not allowed to perform this action.' ),

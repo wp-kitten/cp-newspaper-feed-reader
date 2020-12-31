@@ -1,8 +1,8 @@
 {
-    "name": "cp-newspaper-feed-reader",
-    "display_name": "[ContentPress] Newspaper Feed Reader",
+    "name": "valpress-newspaper-theme-feed-reader",
+    "display_name": "[ValPress] Newspaper Feed Reader",
     "description": "Syndicate content from various sources.",
-    "version": "0.1",
+    "version": "1.0",
     "authors": [
         {
             "name": "wp-kitten",
@@ -10,8 +10,8 @@
         }
     ],
     "contributors": [],
-    "page_url": "https://github.com/wp-kitten/cp-newspaper-feed-reader",
-    "update_url": "http://api.contentpress.news/api/plugin/info/cp-newspaper-feed-reader",
+    "page_url": "https://github.com/wp-kitten/valpress-newspaper-theme-feed-reader",
+    "update_url": "http://api.valpress.net/api/plugin/info/valpress-newspaper-theme-feed-reader",
     "autoload": "index.php",
     "thumbnail": "thumb.png"
 }

@@ -42,7 +42,7 @@
 
     @include('admin.partials.notices')
 
-    @if(cp_current_user_can('manage_options'))
+    @if(vp_current_user_can('manage_options'))
         <div class="row cpfr-page-wrap">
             <div class="col-md-4">
                 <div class="tile">
@@ -99,13 +99,13 @@
                                             $catsTree = [];
                                             if( ! empty($categories)){
                                                 foreach($categories as $cat){
-                                                    $catsTree[] = '<a href="'.esc_attr(cp_get_category_link($cat)).'">'.$cat->name.'</a>';
+                                                    $catsTree[] = '<a href="'.esc_attr(vp_get_category_link($cat)).'">'.$cat->name.'</a>';
                                                 }
                                             }
-                                            $catsTree[] = '<a href="'.esc_attr(cp_get_category_link($feed->category)).'">'.$feed->category->name.'</a>';
+                                            $catsTree[] = '<a href="'.esc_attr(vp_get_category_link($feed->category)).'">'.$feed->category->name.'</a>';
                                         @endphp
                                         <span class="d-block text-description">{!! implode('/', $catsTree) !!}</span>
-                                        <span class="d-block" title="{{$feed->url}}">{{cp_ellipsis($feed->url)}}</span>
+                                        <span class="d-block" title="{{$feed->url}}">{{vp_ellipsis($feed->url)}}</span>
                                     </p>
                                     <div>
                                         <div class="d-inline mr-2">

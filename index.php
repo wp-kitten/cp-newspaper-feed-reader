@@ -14,7 +14,7 @@ define( 'NPFR_PLUGIN_DIR_PATH', dirname( __FILE__ ) );
  * The name of the option storing whether the process is already in progress
  * @var string
  */
-define( 'NPFR_PROCESS_OPT_NAME', 'cp_feed_reader_running' );
+define( 'NPFR_PROCESS_OPT_NAME', 'vp_feed_reader_running' );
 
 /**
  * Stores the name of the special category: public

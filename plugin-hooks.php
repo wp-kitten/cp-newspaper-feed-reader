@@ -12,7 +12,7 @@ if ( !defined( 'NPFR_PLUGIN_DIR_NAME' ) ) {
 /**
  * Create the feeds table if it doesn't exist
  */
-add_action( 'contentpress/plugin/activated', function ( $pluginDirName, $pluginInfo ) {
+add_action( 'valpress/plugin/activated', function ( $pluginDirName, $pluginInfo ) {
     //#! Run the migration
     if ( $pluginDirName == NPFR_PLUGIN_DIR_NAME ) {
         if ( !Schema::hasTable( 'feeds' ) ) {
@@ -32,7 +32,7 @@ add_action( 'contentpress/plugin/activated', function ( $pluginDirName, $pluginI
 }, 10, 2 );
 
 //#! Register the views path
-add_filter( 'contentpress/register_view_paths', function ( $paths = [] ) {
+add_filter( 'valpress/register_view_paths', function ( $paths = [] ) {
     $viewPath = path_combine( NPFR_PLUGIN_DIR_PATH, 'views' );
     if ( !in_array( $viewPath, $paths ) ) {
         array_push( $paths, $viewPath );
@@ -41,8 +41,8 @@ add_filter( 'contentpress/register_view_paths', function ( $paths = [] ) {
 }, 20 );
 
 //
-add_action( 'contentpress/admin/sidebar/menu', function () {
-    if ( cp_current_user_can( 'manage_options' ) ) {
+add_action( 'valpress/admin/sidebar/menu', function () {
+    if ( vp_current_user_can( 'manage_options' ) ) {
         ?>
         <li class="treeview <?php App\Helpers\MenuHelper::activateMenuItem( 'admin.feeds' ); ?>">
             <a class="app-menu__item" href="#" data-toggle="treeview">
@@ -64,7 +64,7 @@ add_action( 'contentpress/admin/sidebar/menu', function () {
                     </a>
                 </li>
 
-                <?php do_action( 'contentpress/admin/sidebar/menu/feeds' ); ?>
+                <?php do_action( 'valpress/admin/sidebar/menu/feeds' ); ?>
             </ul>
         </li>
         <?php
@@ -74,15 +74,15 @@ add_action( 'contentpress/admin/sidebar/menu', function () {
 /**
  * Register the path to the translation file that will be used depending on the current locale
  */
-add_action( 'contentpress/app/loaded', function () {
-    cp_register_language_file( 'npfr', path_combine( NPFR_PLUGIN_DIR_PATH, 'lang' ) );
+add_action( 'valpress/app/loaded', function () {
+    vp_register_language_file( 'npfr', path_combine( NPFR_PLUGIN_DIR_PATH, 'lang' ) );
 } );
 
-add_action( 'contentpress/admin/head', function () {
+add_action( 'valpress/admin/head', function () {
     //#! Make sure we're only loading in our page
     if ( request()->is( 'admin/feed-reader*' ) ) {
-        ScriptsManager::enqueueStylesheet( 'npfr-plugin-styles', cp_plugin_url( NPFR_PLUGIN_DIR_NAME, 'res/styles.css' ) );
-        ScriptsManager::enqueueFooterScript( 'npfr-plugin-scripts', cp_plugin_url( NPFR_PLUGIN_DIR_NAME, 'res/scripts.js' ) );
+        ScriptsManager::enqueueStylesheet( 'npfr-plugin-styles', vp_plugin_url( NPFR_PLUGIN_DIR_NAME, 'res/styles.css' ) );
+        ScriptsManager::enqueueFooterScript( 'npfr-plugin-scripts', vp_plugin_url( NPFR_PLUGIN_DIR_NAME, 'res/scripts.js' ) );
     }
 }, 80 );
 

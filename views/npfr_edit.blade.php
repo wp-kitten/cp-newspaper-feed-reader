@@ -12,7 +12,7 @@
             <div>
                 <h1>{{__('npfr::m.Edit feed')}}</h1>
             </div>
-            @if(cp_current_user_can('manage_options'))
+            @if(vp_current_user_can('manage_options'))
                 <ul class="list-unstyled list-inline mb-0">
                     <li class="">
                         <a href="{{route('admin.feed_reader.feeds.all')}}" class="btn btn-primary">{{__('npfr::m.Back')}}</a>
@@ -24,7 +24,7 @@
 
     @include('admin.partials.notices')
 
-    @if(cp_current_user_can('manage_options'))
+    @if(vp_current_user_can('manage_options'))
         <div class="row cpfr-page-wrap">
             <div class="col-md-6">
                 <div class="tile">

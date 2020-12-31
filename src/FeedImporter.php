@@ -66,12 +66,12 @@ class FeedImporter
 
     public function __construct()
     {
-        $this->languageID = CPML::getDefaultLanguageID();
+        $this->languageID = VPML::getDefaultLanguageID();
         $this->postType = ( new PostType() )->where( 'name', 'post' )->first();
         $this->publishPostStatus = ( new PostStatus() )->where( 'name', 'publish' )->first();
         $this->draftPostStatus = ( new PostStatus() )->where( 'name', 'draft' )->first();
-        $this->currentUserID = cp_get_current_user_id();
-        if ( !cp_user_can( $this->currentUserID, 'administrator' ) ) {
+        $this->currentUserID = vp_get_current_user_id();
+        if ( !vp_user_can( $this->currentUserID, 'administrator' ) ) {
             //#! Pick the first super admin
             $user = Role::where( 'name', Role::ROLE_SUPER_ADMIN )->first()->users()->first();
             if ( !$user ) {
@@ -264,7 +264,7 @@ class FeedImporter
                             $currentPost->update();
 
                             //# Last
-                            do_action( 'contentpress/post_new', $currentPost );
+                            do_action( 'valpress/post_new', $currentPost );
                         }
                     }
                 }
