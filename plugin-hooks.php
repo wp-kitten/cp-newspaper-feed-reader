@@ -90,7 +90,7 @@ add_action( 'valpress/admin/head', function () {
  * Clear cache after feed(s) import
  */
 add_action( 'newspaper-feed-reader/import-complete', function () {
-    $cacheClass = app( 'cp.cache' );
+    $cacheClass = app( 'vp.cache' );
     if ( $cacheClass ) {
         $cacheClass->clear();
     }

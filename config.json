@@ -1,5 +1,5 @@
 {
-    "name": "valpress-newspaper-theme-feed-reader",
+    "name": "valpress-newspaper-feed-reader",
     "display_name": "[ValPress] Newspaper Feed Reader",
     "description": "Syndicate content from various sources.",
     "version": "1.0",
@@ -10,8 +10,8 @@
         }
     ],
     "contributors": [],
-    "page_url": "https://github.com/wp-kitten/valpress-newspaper-theme-feed-reader",
-    "update_url": "http://api.valpress.net/api/plugin/info/valpress-newspaper-theme-feed-reader",
+    "page_url": "https://github.com/wp-kitten/valpress-newspaper-feed-reader",
+    "update_url": "https://api.valpress.net/api/plugin/info/valpress-newspaper-feed-reader",
     "autoload": "index.php",
     "thumbnail": "thumb.png"
 }
