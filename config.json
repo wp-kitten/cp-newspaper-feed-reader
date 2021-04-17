@@ -2,7 +2,7 @@
     "name": "valpress-newspaper-feed-reader",
     "display_name": "[ValPress] Newspaper Feed Reader",
     "description": "Syndicate content from various sources.",
-    "version": "1.0",
+    "version": "1.0.1",
     "authors": [
         {
             "name": "wp-kitten",
