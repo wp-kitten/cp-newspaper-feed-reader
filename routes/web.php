@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Feed;
 use App\Helpers\FeedImporter;
 use App\Helpers\UserNotices;
+use App\Models\Feed;
 use App\Models\Options;
 use App\Models\Settings;
 use Illuminate\Support\Arr;
@@ -28,7 +28,7 @@ Route::get( "admin/feed-reader/feeds", function () {
         UserNotices::getInstance()->addNotice( 'danger', __( 'npfr.The feeds table was not found. Have you forgotten to run the migration?' ) );
     }
     else {
-        $feedsQuery = Feed::orderBy('created_at', 'desc');
+        $feedsQuery = Feed::orderBy( 'created_at', 'desc' );
         $numFeeds = $feedsQuery->count();
         $feeds = $feedsQuery->paginate( ( new Settings() )->getSetting( 'post_per_page' ) );
     }
@@ -89,6 +89,7 @@ Route::post( "admin/feed-reader/feeds/create", function () {
         'hash' => md5( $url ),
         'url' => $url,
         'category_id' => intval( $request->get( 'id' ) ),
+        'user_id' => vp_get_current_user_id(),
     ] );
 
     if ( $result ) {
@@ -428,15 +429,14 @@ Route::post( 'admin/feed-reader/feeds/import/{id}', function ( $feedID ) {
     ] );
 } )->middleware( [ 'web', 'auth', 'active_user' ] )->name( 'admin.feed_reader.feeds.import_feed' );
 
-
 /*
  * Frontend route
  *
  * Registers a route that whenever accessed it will trigger the feed import command
  */
-Route::any('newspaper-feed-reader/import-feeds', function(){
-    $r = Artisan::call('npfr_import_feeds');
+Route::any( 'newspaper-feed-reader/import-feeds', function () {
+    $r = Artisan::call( 'npfr_import_feeds' );
     return [
         'success' => $r,
     ];
-})->middleware( [ 'web', 'auth', 'active_user', 'under_maintenance' ] );
+} )->middleware( [ 'web', 'auth', 'active_user', 'under_maintenance' ] );
